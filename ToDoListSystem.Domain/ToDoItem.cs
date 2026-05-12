@@ -13,8 +13,8 @@ namespace ToDoListSystem.Domain.Entities
         public ToDoItem()
         {
             Id = Guid.NewGuid();
-            Status = ToDoStatus.Todo; // За замовчуванням нова таска має статус Todo
-            CreatedAt = DateTime.UtcNow; // Використовуємо UTC для уникнення проблем із часовими поясами
+            Status = ToDoStatus.Todo;
+            CreatedAt = DateTime.UtcNow;
         }
     }
 }
