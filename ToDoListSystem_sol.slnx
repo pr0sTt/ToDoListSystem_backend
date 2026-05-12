@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution_Items/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Project Path="ToDoListSystem.API/ToDoListSystem.API.csproj" />
+  <Project Path="ToDoListSystem.Application/ToDoListSystem.Application.csproj" />
+  <Project Path="ToDoListSystem.Domain/ToDoListSystem.Domain.csproj" />
+  <Project Path="ToDoListSystem.Infrastructure/ToDoListSystem.Infrastructure.csproj" />
+</Solution>

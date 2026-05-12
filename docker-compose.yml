@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql_todo_db
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=StrongPassword2026#
+    volumes:
+      - mssql_data:/var/opt/mssql # Це збереже ваші дані після видалення контейнера
+
+volumes:
+  mssql_data:
