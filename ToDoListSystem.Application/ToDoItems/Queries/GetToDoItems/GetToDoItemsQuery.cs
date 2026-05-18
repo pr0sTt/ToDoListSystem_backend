@@ -27,7 +27,9 @@ namespace ToDoListSystem.Application.ToDoItems.Queries.GetToDoItems
                     Title = item.Title,
                     Description = item.Description,
                     Status = item.Status.ToString().ToLowerInvariant(),
-                    Deadline = item.Deadline
+                    Deadline = item.Deadline.HasValue
+                        ? DateTime.SpecifyKind(item.Deadline.Value, DateTimeKind.Utc)
+                        : null
                 })
                 .ToListAsync(cancellationToken);
         }

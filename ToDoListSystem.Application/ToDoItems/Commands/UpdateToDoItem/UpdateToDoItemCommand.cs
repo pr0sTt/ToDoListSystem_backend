@@ -34,7 +34,15 @@ namespace ToDoListSystem.Application.ToDoItems.Commands.UpdateToDoItem
 
             entity.Title = request.Title;
             entity.Description = request.Description;
-            entity.Deadline = request.Deadline;
+
+            if (request.Deadline.HasValue)
+            {
+                entity.Deadline = DateTime.SpecifyKind(request.Deadline.Value, DateTimeKind.Utc);
+            }
+            else
+            {
+                entity.Deadline = null;
+            }
 
             var cleanStatus = request.Status.ToLowerInvariant().Replace("-", "");
             entity.Status = cleanStatus switch
