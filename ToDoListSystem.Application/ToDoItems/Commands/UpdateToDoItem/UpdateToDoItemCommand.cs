@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ToDoListSystem.Application.Common.Interfaces;
+using ToDoListSystem.Domain.Entities;
 
 namespace ToDoListSystem.Application.ToDoItems.Commands.UpdateToDoItem
 {
@@ -10,7 +11,7 @@ namespace ToDoListSystem.Application.ToDoItems.Commands.UpdateToDoItem
         Guid Id,
         string Title,
         string? Description,
-        bool IsCompleted,
+        string Status,
         DateTime? Deadline) : IRequest<bool>;
 
     public class UpdateToDoItemCommandHandler : IRequestHandler<UpdateToDoItemCommand, bool>
@@ -34,6 +35,15 @@ namespace ToDoListSystem.Application.ToDoItems.Commands.UpdateToDoItem
             entity.Title = request.Title;
             entity.Description = request.Description;
             entity.Deadline = request.Deadline;
+
+            var cleanStatus = request.Status.ToLowerInvariant().Replace("-", "");
+            entity.Status = cleanStatus switch
+            {
+                "todo" => ToDoStatus.Todo,
+                "inprogress" => ToDoStatus.InProgress,
+                "done" => ToDoStatus.Done,
+                _ => entity.Status
+            };
 
             await _context.SaveChangesAsync(cancellationToken);
 

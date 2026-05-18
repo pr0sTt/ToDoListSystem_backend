@@ -29,14 +29,14 @@ namespace ToDoListSystem.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(Guid id, UpdateToDoItemCommand command)
+        public async Task<ActionResult> Update(Guid id, [FromBody] UpdateToDoItemCommand request)
         {
-            if (id != command.Id)
+            if (id != request.Id)
             {
                 return BadRequest();
             }
 
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(request);
 
             if (!result)
             {

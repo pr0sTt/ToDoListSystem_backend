@@ -26,7 +26,7 @@ namespace ToDoListSystem.Application.ToDoItems.Queries.GetToDoItems
                     Id = item.Id,
                     Title = item.Title,
                     Description = item.Description,
-                    Status = item.Status.ToString(),
+                    Status = item.Status.ToString().ToLowerInvariant(),
                     Deadline = item.Deadline
                 })
                 .ToListAsync(cancellationToken);
